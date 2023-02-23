@@ -1,13 +1,13 @@
-#include "main.h"
 #include <unistd.h>
+
 /**
- * _puctar - writes the charcter c to stdout
- * @c: The character to print
- *
- * Return succcess 1
- * On error -1 is returned and errno is ser appropriately
- */
-int _putchar(char c)
+  * _putchar - function that prints one character
+  * @n: a character that we want to print
+  *
+  * Return: (1)
+  */
+int _putchar(char n)
 {
-	return(write(1 &c,1));
+	write(1, &n, 1);
+	return (1);
 }	
