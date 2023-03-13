@@ -1,80 +1,39 @@
 #include "main.h"
-		
 #include <stdlib.h>
-		
+
 /**
-		
- * alloc_grid - nested loop to make grid
-		
- * @width: width input
-		
- * @height: height input
-		
- * Return: pointer to 2 dim. array
-		
+ * str_concat - Concatenates two strings.
+ * @s1: The string to be concatenated upon.
+ * @s2: The string to be concatenated to s1.
+ *
+ * Return: If concatenation fails - NULL.
+ *         Otherwise - a pointer the newly-allocated space in memory
+ *                     containing the concatenated strings.
  */
-		
-int **alloc_grid(int width, int height)
-		
+char *str_concat(char *s1, char *s2)
 {
-		
-	int **mee;
-		
-	int x, y;
-		
+	char *concat_str;
+	int index, concat_index = 0, len = 0;
 
-		
-	if (width <= 0 || height <= 0)
-		
+	if (s1 == NULL)
+		s1 = "";
+
+	if (s2 == NULL)
+		s2 = "";
+
+	for (index = 0; s1[index] || s2[index]; index++)
+		len++;
+
+	concat_str = malloc(sizeof(char) * len);
+
+	if (concat_str == NULL)
 		return (NULL);
-		
 
-		
-	mee = malloc(sizeof(int *) * height);
-		
+	for (index = 0; s1[index]; index++)
+		concat_str[concat_index++] = s1[index];
 
-		
-	if (mee == NULL)
-		
-		return (NULL);
-		
+	for (index = 0; s2[index]; index++)
+		concat_str[concat_index++] = s2[index];
 
-		
-	for (x = 0; x < height; x++)
-		
-	{
-		
-		mee[x] = malloc(sizeof(int) * width);
-		
-
-		
-		if (mee[x] == NULL)
-		
-		{
-		
-			for (; x >= 0; x--)
-		
-				free(mee[x]);
-		
-
-		
-			free(mee);
-		
-			return (NULL);
-		
-		}
-		
-	}
-		
-
-		
-	for (x = 0; x < height; x++)
-		
-	{
-		
-		for (y = 0; y < width; y++)
-		
-			mee[x][y] = 0;
-		
-	}
-
+	return (concat_str);
+}
